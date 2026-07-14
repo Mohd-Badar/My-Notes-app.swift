@@ -149,7 +149,7 @@
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Add Notes"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Add Note"/>
                                         <connections>
                                             <action selector="addBtn:" destination="7Vi-gb-N87" eventType="touchUpInside" id="toV-og-2mU"/>
                                         </connections>

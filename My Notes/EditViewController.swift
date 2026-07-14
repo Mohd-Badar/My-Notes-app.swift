@@ -30,12 +30,26 @@ class EditViewController: UIViewController, UITextViewDelegate {
         addBtn.layer.cornerRadius = 10
         addBtn.backgroundColor = UIColor(hex: "#E8B4A6")
         backBtn.backgroundColor = UIColor(hex: "#F2EDE8")
+        
+        
+        if let title = editTitle, let detail = editDetail {
+            textView.text = title + "\n" + detail
+            textView.textColor = .black
+        } else {
+            textView.text = "Write here..."
+            textView.textColor = .lightGray
+        }
+        
+        textView.delegate = self
 
         // Do any additional setup after loading the view.
     }
     
-    
-    var onSave: ((String) -> Void)?
+    var editTitle: String?
+    var editDetail: String?
+    var noteIndex: Int?
+    var onUpdate: ((String, String, Int) -> Void)?
+    var onSave: ((String, String) -> Void)?
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -56,16 +70,32 @@ class EditViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func addBtn(_ sender: Any) {
         
-        let text = textView.text ?? ""
-           
-           if text == "Write here..." || text.isEmpty {
-               return
-           }
-           
-           onSave?(text)
-           
-           dismiss(animated: true)
+        let fullText = textView.text ?? ""
+
+        if fullText == "Write here..." || fullText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return
+        }
+
+        let lines = fullText.components(separatedBy: "\n")
+
+        let title = lines.first ?? ""
+
+        let detail: String
+        if lines.count > 1 {
+            detail = lines.dropFirst().joined(separator: " ")
+        } else {
+            detail = title
+        }
+
+        if noteIndex != nil {
+            onUpdate?(title, detail, noteIndex!)
+        } else {
+            onSave?(title, detail)
+        }
+
+        dismiss(animated: true)
     }
+    
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true)
     }

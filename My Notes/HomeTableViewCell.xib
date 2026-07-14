@@ -16,14 +16,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTy-fi-t2B">
-                        <rect key="frame" x="20" y="10" width="56" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTy-fi-t2B">
+                        <rect key="frame" x="20" y="9.9999999999999982" width="260" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPA-aj-ePa">
-                        <rect key="frame" x="20.000000000000004" y="31" width="35.333333333333343" height="17"/>
+                        <rect key="frame" x="20" y="30.333333333333329" width="200" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -32,9 +32,11 @@
                 <color key="backgroundColor" red="0.96470588235294119" green="0.92941176470588238" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="SPA-aj-ePa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Soh-e9-qUC"/>
-                    <constraint firstItem="OTy-fi-t2B" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="b1C-93-fWA"/>
+                    <constraint firstItem="OTy-fi-t2B" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Trv-cV-SPM"/>
+                    <constraint firstAttribute="trailing" secondItem="SPA-aj-ePa" secondAttribute="trailing" constant="100" id="aTh-m9-xzD"/>
                     <constraint firstItem="OTy-fi-t2B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="bqG-rO-ewO"/>
                     <constraint firstItem="SPA-aj-ePa" firstAttribute="top" secondItem="OTy-fi-t2B" secondAttribute="bottom" id="csL-hi-tQh"/>
+                    <constraint firstAttribute="trailing" secondItem="OTy-fi-t2B" secondAttribute="trailing" constant="40" id="iyK-K0-cHC"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

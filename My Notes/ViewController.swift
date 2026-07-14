@@ -7,7 +7,35 @@
 
 import UIKit
 
+struct Note {
+    var title: String
+    var detail: String
+}
+
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let vc = storyboard?.instantiateViewController(identifier: "EditViewController") as! EditViewController
+        
+        vc.editTitle = notes[indexPath.row]
+        vc.editDetail = notesDetail[indexPath.row]
+        
+        vc.noteIndex = indexPath.row
+        
+        vc.onUpdate = { [weak self] title, detail, index in
+            self?.notes[index] = title
+            self?.notesDetail[index] = detail
+                        UserDefaults.standard.set(self?.notes, forKey: "notes")
+            UserDefaults.standard.set(self?.notesDetail, forKey: "notesDetail")
+            
+            self?.tableView.reloadData()
+        }
+        
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
     }
@@ -16,13 +44,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
         
         cell.titleLabel.text = notes[indexPath.row]
-        cell.discriptionLabel.text = notesDetail[indexPath.row]
-          
-          return cell
+
+        cell.titleLabel.numberOfLines = 1
+        cell.titleLabel.lineBreakMode = .byWordWrapping
+
+        let fullText = notesDetail[indexPath.row]
+        let words = fullText.split(separator: " ")
+        let shortText = words.prefix(3).joined(separator: " ")
+
+        cell.discriptionLabel.text = words.count > 3 ? shortText + "..." : shortText
+        cell.discriptionLabel.numberOfLines = 1
+
+        cell.selectionStyle = .none
+
+        return cell
     }
     
-    var notes = [""]
-    var notesDetail = [""]
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            notes.remove(at: indexPath.row)
+            notesDetail.remove(at: indexPath.row)
+            
+            UserDefaults.standard.set(notes, forKey: "notes")
+            UserDefaults.standard.set(notesDetail, forKey: "notesDetail")
+           
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    
+    var notes: [String] = []
+    var notesDetail: [String] = []
 
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -37,6 +91,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        if let savedNotes = UserDefaults.standard.stringArray(forKey: "notes"),
+        let savedDetails = UserDefaults.standard.stringArray(forKey: "notesDetail") {
+            
+            notes = savedNotes
+            notesDetail = savedDetails
+        }
+        
         // Do any additional setup after loading the view.
         
         tableView.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
@@ -44,15 +106,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBAction func addBtn(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "EditViewController") as! EditViewController
-        
-        vc.onSave = { [weak self] newNote in
-            self?.notes.append(newNote)
-            self?.notesDetail.append("New note added")
-            self?.tableView.reloadData()
-        }
-        
-        vc.modalPresentationStyle = .fullScreen
-         present(vc, animated: true)
+          
+          vc.onSave = { [weak self] title, detail in
+              self?.notes.append(title)
+              self?.notesDetail.append(detail)
+              UserDefaults.standard.set(self?.notes, forKey: "notes")
+              UserDefaults.standard.set(self?.notesDetail, forKey: "notesDetail")
+              self?.tableView.reloadData()
+          }
+          
+          vc.modalPresentationStyle = .fullScreen
+          present(vc, animated: true)
     }
     
 }
