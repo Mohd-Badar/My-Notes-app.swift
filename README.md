@@ -1,4 +1,13 @@
-<p align="center">
-  <img src="images/homePage.png" width="200"/>
-  <img src="images/addNotes.png" width="200"/>
-</p>
+## 📱 App Screenshots
+
+### Splash Screen
+![Splash Screen](images/splashScreen.png)
+
+### Add Notes Screen
+![Add Notes](images/addNotes.png)
+
+### Home Page
+![Home Page](images/homePage.png)
+
+### Edit Screen
+![Edit Screen](images/editScreen.png)
