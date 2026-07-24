@@ -1,13 +1,13 @@
 ## 📱 App Screenshots
 
 ### Splash Screen
-![Splash Screen](images/splashScreen.png)
+![Splash Screen](splashScreen.png)
 
 ### Add Notes Screen
-![Add Notes](images/addNotes.png)
+![Add Notes](addNotes.png)
 
 ### Home Page
-![Home Page](images/homePage.png)
+![Home Page](homePage.png)
 
 ### Edit Screen
-![Edit Screen](images/editScreen.png)
+![Edit Screen](editScreen.png)
