@@ -1,8 +1,10 @@
-
-//  ViewController.swift
-//  My Notes App
-//  Created by Mohd Badar 
-// Date : 13/07/26
+//
+// ViewController.swift
+// My Notes App
+// Created by Mohd Badar
+//
+// Created on Date : 13/07/26.
+//
 
 
 import UIKit
