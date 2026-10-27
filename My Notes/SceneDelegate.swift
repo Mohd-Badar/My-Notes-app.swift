@@ -1,6 +1,9 @@
+//
 //  SceneDelegate.swift
 //  My Notes
-//  Created by Mohd Badar on 13/07/26
+//
+//  Created by Mohd Badar on 13/07/26.
+//
 
 import UIKit
 
